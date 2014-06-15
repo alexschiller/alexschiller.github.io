@@ -1,0 +1,12 @@
+.title-head {
+	/*font-family:"gill sans", "times new roman", times, serif;*/
+	font-family:"georgia";
+	font-size:30px;
+}
+
+.body {
+	/*font-family:"FRANKLIN GOTHIC", "times new roman", times, serif;*/
+	font-family:"verdana";
+	/*font-family:"garamond"*/
+	font-size:25px;
+}
