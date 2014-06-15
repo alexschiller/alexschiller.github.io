@@ -1,12 +1,18 @@
 .title-head {
-	/*font-family:"gill sans", "times new roman", times, serif;*/
-	font-family:"georgia";
+	font-family: 'Abel';
 	font-size:30px;
+	margin:10px;
 }
 
 .body {
+	margin: 50px;
 	/*font-family:"FRANKLIN GOTHIC", "times new roman", times, serif;*/
 	font-family:"verdana";
 	/*font-family:"garamond"*/
-	font-size:25px;
+	font-size:20px;
+}
+
+.line {
+	border-bottom: dashed 1px;
+	width: 800px;
 }
