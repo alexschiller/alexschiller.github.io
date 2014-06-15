@@ -1,18 +1,40 @@
 .title-head {
-	font-family: 'Abel';
-	font-size:30px;
+	font-family: 'Abel', sans-serif;	
+	font-size:55px;
 	margin:10px;
+	color: #6b7071;
+	/*padding:0px;*/
+	border-bottom: solid 3px;
+	/*float:left;*/
+	display:inline-block;
 }
 
-.body {
-	margin: 50px;
-	/*font-family:"FRANKLIN GOTHIC", "times new roman", times, serif;*/
-	font-family:"verdana";
-	/*font-family:"garamond"*/
+#about {
+	margin: 20px 50px 20px 50px;
+	font-family:"Abel", sans-serif;
 	font-size:20px;
 }
 
-.line {
-	border-bottom: dashed 1px;
-	width: 800px;
+.body {
+	margin: 20px 50px 20px 50px;
+	font-family:"Abel", sans-serif;
+	font-size:20px;
 }
+
+
+.link-button {
+	font-family: 'Abel', sans-serif;
+	font-size:15px;
+	margin: 0 0 0 19px;
+	padding:10px 20px 10px 20px;
+	color: white;
+
+	float:left;
+	
+	background: #008fbf;
+}
+
+/* light gray #B9B9B9*/
+/* gunmetal: color: #6b7071;*/
+/* light blue: border-color: #F0F8FF;*/
+/* nice blue: background: #83A8AA;*/
