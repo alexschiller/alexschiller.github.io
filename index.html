@@ -7,17 +7,18 @@
 <div>
 	<div class="title-head" >Alexander J. Schiller
 		<div style="display:inline-block;">
-			<div class="link-button">ABOUT</div>
-			<div class="link-button">PROJECTS</div>
-			<div class="link-button">TOOLS</div>
+			<div class="link-button" id="about">ABOUT ME</div>
+			<div class="link-button" id="research">RESEARCH</div>
+			<div class="link-button" id="projects">PROJECTS</div>
 		</div>
 	</div>
 </div>
-<div class="body" id="about">
+
+<!-- Start #showAbout -->
+<div class="body" id="showAbout">
 	<h2>About</h2>
 	<div style="width:700px;">
 	<p>
-	Under Construction....
 	</p>
 	<p>
 	I am a fourth-year doctoral student in <a href="http://www.virginia.edu/psychology/cognitive/"> Cognitive Psychology</a> at the <a href="http://www.virginia.edu/">University of Virginia</a>.
@@ -25,15 +26,61 @@
 	<p>
 	My main work is on affect (moods and emotions) and value (kinds of good).
 	</p>
-</div>
-<!-- <div style="margin-left:50px;"> -->
 	<img src="self.jpeg" style="width:300px;">
-<!-- </div> -->
-</div>
-<script>
-	// for(i=0; i<50; i++) { 
-	// var n = 100/(i);
-	// $('#holder').append('<div class="line" style="width:'+ n +  'pt;"></div>')
+	</div>
+</div> 
+<!-- End #showAbout -->
 
-// }
+<!-- Start #showTools -->
+<div class="body" id="showResearch" style="display:none;">
+	<h2>Research</h2>
+	<div style="width:700px;">
+		<p>I am primarily concerned with affect, or value in the most general sense.</p>
+		<p>I study affect with questions like:</p>
+		<p>How does affective experience (mood) change value calculations (evaluations)?</p>
+		<p>How are positive and negative things expressed?</p>
+		<p>Are there different kinds of value that can be quantified and calculated?</p>
+
+	</div>
+</div>
+<!-- End #showTools -->
+
+<!-- Start #showProjects -->
+<div class="body" id="showProjects" style="display:none;">
+	<h2>Projects</h2>
+	<div style="width:700px;">
+		<p> Sentiment Colored Text</p>
+		<p style="background-color:black;">
+		<font color="#F5EEFD">What </font><font color="#F5EEFD">fire </font><font color="#F5EEFD">is </font><font color="#F5EEFD">in </font><font color="#FFECEC">mine </font><font color="#EDDFFB">ears. </font><font color="#EDDFFB">Can </font><font color="#EDDFFB">this </font><font color="#EDDFFB">be </font><font color="#DBBFF7">true? </font><font color="#DBBFF7">Stand </font><font color="#DBBFF7">I </font><font color="#CEA8F4">condemn </font><font color="#DBBFF7">'d </font><font color="#DBBFF7">for </font><font color="#C79BF2">pride </font><font color="#DBBFF7">and </font><font color="#EDDFFB">scorn </font><font color="#DBBFF7">so </font><font color="#DBBFF7">much. </font><font color="#E1CAF9">Contempt </font><font color="#EDDFFB">farewell </font><font color="#DBBFF7">and </font><font color="#CEA8F4">maiden </font><font color="#C79BF2">pride </font><font color="#DBBFF7">adieu. </font><font color="#E1CAF9">No </font><font color="#E1CAF9">glory </font><font color="#DBBFF7">lives </font><font color="#DBBFF7">behind </font><font color="#E1CAF9">the </font><font color="#E1CAF9">back </font><font color="#E1CAF9">of </font><font color="#E1CAF9">such. </font><font color="#C79BF2">And </font><font color="#C79BF2">Benedick </font><font color="#C79BF2">love </font><font color="#C79BF2">on </font><font color="#C79BF2">I </font><font color="#C79BF2">will </font><font color="#C79BF2">requite </font><font color="#CEA8F4">thee. </font><font color="#AE70ED">Taming </font><font color="#C79BF2">my </font><font color="#C79BF2">wild </font><font color="#AE70ED">heart </font><font color="#C79BF2">to </font><font color="#AE70ED">thy </font><font color="#AE70ED">loving </font><font color="#C79BF2">hand </font><font color="#C79BF2">If </font><font color="#AE70ED">thou </font><font color="#C79BF2">dost </font><font color="#C79BF2">love </font><font color="#C79BF2">my </font><font color="#9B4EE9">kindness </font><font color="#AE70ED">shall </font><font color="#EDDFFB">incite </font><font color="#CEA8F4">thee. </font><font color="#C79BF2">To </font><font color="#AE70ED">bind </font><font color="#C79BF2">our </font><font color="#AE70ED">loves </font><font color="#C79BF2">up </font><font color="#C79BF2">in </font><font color="#C79BF2">a </font><font color="#AE70ED">holy </font><font color="#C79BF2">band </font><font color="#C79BF2">For </font><font color="#AE70ED">others </font><font color="#C79BF2">say </font><font color="#AE70ED">thou </font><font color="#C79BF2">dost </font><font color="#C79BF2">deserve </font><font color="#C79BF2">and </font><font color="#C79BF2">I. </font><font color="#AE70ED">Believe </font><font color="#C79BF2">it </font><font color="#C79BF2">better </font><font color="#C79BF2">than </font><font color="#C79BF2">reportingly. </font>
+		</p>
+
+
+
+
+
+
+	</div>
+</div>
+<!-- End #showProjects -->
+
+<script>
+$('#about').click(function(){
+	$('#showAbout').show();
+	$('#showProjects').hide();
+	$('#showResearch').hide();
+})
+
+
+$('#research').click(function(){
+	$('#showResearch').show();
+	$('#showAbout').hide();
+	$('#showProjects').hide();
+})
+
+$('#projects').click(function(){
+	$('#showProjects').show();
+	$('#showAbout').hide();
+	$('#showResearch').hide();
+})
+
 </script>
