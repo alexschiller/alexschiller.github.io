@@ -1,102 +1,866 @@
-<link rel="stylesheet" href="site.css">
-<link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 
+    Whoa you're looking at my source code. Here's some notes:
+    1. This was written in a single HTML file because why not?
+    I want to show off what I can do by hand, not what a library provides.
+    2. Only external deps are font-awesome and google fonts.
+    3. No page tracking.
+    4. Heck, no JavaScript at that. That may change eventually if a good usecase arises.
+
+    Want to chat, hit me up: alexschiller@gmail.com
+-->
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/site.css">
+</head>
+
+<style>
+    /* Loosely organized as: */
+
+    /* Position */
+    /* Display and Box Model */
+    /* Color */
+    /* Text */
+    /* Other */
+
+    /* Like rules grouped together */
+
+    body {
+        color: #46454B;
+        background: linear-gradient(45deg, #aaa, #fff);
+        font-family: 'Lato', sans-serif;
+    }
+
+    .paper {
+        width: 798;
+        margin: 50px auto;
+        padding: 96px;
+        border: 1px solid #101010;
+        box-shadow: 5px 10px 18px #888888;
+        background-color: #fff;
+    }
+
+    h2 {
+        text-align: center;
+    }
 
 
+    a:link, a:visited {
+        color: #355F5F;
+    }
 
-<div>
-	<div class="title-head" >Alexander J. Schiller
-		<div style="display:inline-block;">
-			<a class="link-button" href="#about" id="about">ABOUT ME</a>
-			<a class="link-button" href="#research" id="research">RESEARCH</a>
-			<a class="link-button" href="#projects" id="projects">PROJECTS</a>
-		</div>
-	</div>
-</div>
+    a:hover {
+        color: #162727;
+    }
 
-<!-- Start #showAbout -->
-<div class="body" id="showAbout">
-	<h2>About</h2>
-	<div style="width:700px;">
-	<p>I am a fourth-year <a class="out-bound-link" href="http://avillage.web.virginia.edu/Psych/Faculty/Profile/Alexander-Schiller">doctoral student</a> in <a class="out-bound-link" href="http://www.virginia.edu/psychology/cognitive/"> Cognitive Psychology</a> at the <a class="out-bound-link" href="http://www.virginia.edu/">University of Virginia</a>.</p>
-	<p>My main work is on affect (moods and emotions) and value (kinds of good).</p>
-	<p>I am a <a class="out-bound-link" href="http://centerforopenscience.org/about_team/">developer intern</a> at the <a class="out-bound-link" href="http://centerforopenscience.org/"> Center for Open Science</a>.
+    .body-text {
+        font-size: 16px;
+        line-height: 40px;
+    }
 
-	<p>I am a <a class="out-bound-link" href="https://www.imprs-life.mpg.de/en/people/alexander-j-schiller">fellow</a> in the <a class="out-bound-link" href="https://www.imprs-life.mpg.de/en">International Max Planck Research School on the Life Course</a>.</p>
-	<!-- <br> -->
-	<img src="self.jpeg" style="width:300px;">
-	</div>
-</div> 
-<!-- End #showAbout -->
+    .text {
+        margin-left: 20px;
+        font-size: 16px;
+        line-height: 32px;
+    }
 
-<!-- Start #showTools -->
-<div class="body" id="showResearch" style="display:none;">
-	<h2>Research</h2>
-	<div style="width:700px;">
-		<p>I am primarily concerned with affect, or value in the most general sense.</p>
-		<p>I study affect with questions like:</p>
-		<p>How does affective experience (mood) change value calculations (evaluations)?</p>
-		<p>How are positive and negative things expressed?</p>
-		<p>Are there different kinds of value that can be quantified and calculated?</p>
+    .body-title {
+        font-size: 20px;
+    }
 
-	</div>
-</div>
-<!-- End #showTools -->
+    .icon-link:link, .icon-link:visited {
+        color: #46454b;
+    }
 
-<!-- Start #showProjects -->
-<div class="body" id="showProjects" style="display:none;">
-	<h2>Projects</h2>
-	<div style="width:700px;">
-	<h3>Center for Open Science Projects</h3>
-		<p>- <a  class="out-bound-link" href="https://github.com/CenterForOpenScience/osfr">osfr</a>: An R package to access project files and data on the <a class="out-bound-link" href="www.osf.io">Open Science Framework</a>.</p>
-		<p>- <a class="out-bound-link" href="https://github.com/CenterForOpenScience/modular-file-renderer">Modular File Renderer</a>: Python library to render files into html.</p>
+    .icon-link:hover {
+        color: #66A2A2;
+    }
 
-	<h3>Research/Personal Projects</h3>
-		<p>- Sentiment Colored Text: In progress </p>
-		<p style="background-color:black; float: left; padding:0px 20px 20px 20px;"><font color="#F5EEFD"><br>What </font><font color="#FFECEC">fire </font><font color="#F5EEFD">is </font><font color="#F5EEFD">in </font><font color="#F5EEFD">mine </font><font color="#F5EEFD">ears? </font><font color="#E1CAF9">Can </font><font color="#F5EEFD">this </font><font color="#E1CAF9">be </font><font color="#A55FEB">true? </font><font color="#F5EEFD"><br>Stand </font><font color="#F5EEFD">I </font><font color="#FFBBBB">condemn </font><font color="#F5EEFD">'d </font><font color="#F5EEFD">for </font><font color="#C79BF2">pride </font><font color="#F5EEFD">and </font><font color="#FFBBBB">scorn </font><font color="#F5EEFD">so </font><font color="#F5EEFD">much? </font><font color="#F5EEFD"><br>Contempt </font><font color="#FFBBBB">farewell </font><font color="#F5EEFD">and </font><font color="#E1CAF9">maiden </font><font color="#C79BF2">pride </font><font color="#F5EEFD">adieu! </font><font color="#F5EEFD"><br>No </font><font color="#E1CAF9">glory </font><font color="#E1CAF9">lives </font><font color="#F5EEFD">behind </font><font color="#F5EEFD">the </font><font color="#F5EEFD">back </font><font color="#F5EEFD">of </font><font color="#F5EEFD">such. </font><font color="#F5EEFD"><br>And </font><font color="#F5EEFD">Benedick </font><font color="#A55FEB">love </font><font color="#F5EEFD">on </font><font color="#F5EEFD">I </font><font color="#F5EEFD">will </font><font color="#F5EEFD">requite </font><font color="#F5EEFD">thee, </font><font color="#F5EEFD"><br>Taming </font><font color="#F5EEFD">my </font><font color="#E1CAF9">wild </font><font color="#C79BF2">heart </font><font color="#F5EEFD">to </font><font color="#F5EEFD">thy </font><font color="#F5EEFD">loving </font><font color="#F5EEFD">hand.<br>If </font><font color="#F5EEFD">thou </font><font color="#F5EEFD">dost </font><font color="#A55FEB">love </font><font color="#F5EEFD">my </font><font color="#A55FEB">kindness </font><font color="#E1CAF9">shall </font><font color="#F5EEFD">incite </font><font color="#F5EEFD">thee </font><font color="#F5EEFD"><br>To </font><font color="#F5EEFD">bind </font><font color="#F5EEFD">our </font><font color="#E1CAF9">loves </font><font color="#F5EEFD">up </font><font color="#F5EEFD">in </font><font color="#F5EEFD">a </font><font color="#E1CAF9">holy </font><font color="#E1CAF9">band. </font><font color="#F5EEFD"><br>For </font><font color="#F5EEFD">others </font><font color="#E1CAF9">say </font><font color="#F5EEFD">thou </font><font color="#F5EEFD">dost </font><font color="#C79BF2">deserve </font><font color="#F5EEFD">and </font><font color="#F5EEFD">I </font><font color="#F5EEFD"><br>Believe </font><font color="#F5EEFD">it </font><font color="#E1CAF9">better </font><font color="#F5EEFD">than </font><font color="#F5EEFD">reportingly. </font><font color="#F5EEFD"><br> </font>
+    .icon-link {
+        text-decoration: none;
+        margin: 30px;
+        font-size: 30px;
+    }
+
+    .flex-graph {
+        display: flex;
+        align-items: left;
+        justify-content: left;
+    }
+
+    .flex-bar {
+        display: flex;
+        align-items: left;
+        justify-content: space-between;
+    }
+
+    .flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .flex-item {
+        max-width: 50%;
+    }
+
+    .line {
+        margin: 10px 0;
+        height: 1px;
+        background: #46454b;
+    }
+
+    .square {
+        width: 10px;
+        height: 10px;
+        margin: 1px;
+    }
+
+    /* Square Colors */
+    .github-4 {background-color: rgb(25, 97, 39);}
+    .github-3 {background-color: rgb(35, 154, 59);}
+    .github-2 {background-color: rgb(123, 201, 111);}
+    .github-1 {background-color: rgb(198, 228, 139);}
+    .github-0 {background-color: rgb(235, 237, 240);}
+
+    .back-color {background-color: rgb(20, 50, 200);}
+    .back-color {background-color: rgb(20, 200, 50);}
+    .back-color {background-color: rgb(200, 50, 20);}
 
 
+    .back-color {background-color: #3E8585}
+    /* .exp-2 {background-color: #66A2A2} */
+    /* .exp-1 {background-color: #CBE7E7} */
+    /* .exp-0 {background-color: #F0FAFA} */
+    /* .exp-0 {background-color: rgb(235, 237, 240);} */
+    .github-graph {
+        border: 1px #e1e4e8 solid !important;
+        border-radius: 3px;
+        padding: 30px;
+        width: 550px;
+        text-align: center;
+    }
 
-		</p>
-		<p style='float:left;'>Much Ado About Nothing, Act 3, Scene 1</p>
+    .github-text {
+        margin: 0 2px 0 2px;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 10px;
+        color: #767676;
+    }
 
-	</div>
-</div>
-<!-- <div style="position:absolute; left:50px; bottom:100;">
-	<a href="#email"><img id="email" style="margin-right:20px;" src="mail.png"></a>
-	<a href="http://github.com/alexschiller"><img style="margin-right:20px;" src="octocat.png"></a>
-</div> -->
+    .github-flex-graph {
+        display: flex;
+        align-items: center;
+        justify-content: left;
+    }
 
-<!-- End #showProjects -->
+    .sentiment-highlighter {
+        position: relative;
+        background: #101010;
+        border: 5px solid #CBE7E7;
+        color: #CBE7E7;
+        text-align: center;
+        width: 500px;
+        padding: 10px;
+        border-radius: 30px;
+        line-height: 24px;
+        margin: 10px;
+    }
 
-<script>
-$('#about').click(function(){
-	$('#showAbout').show();
-	$('#showProjects').hide();
-	$('#showResearch').hide();
-});
+    .sentiment-highlighter:after, .sentiment-highlighter:before {
+        right: 100%;
+        top: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
 
+    .sentiment-highlighter:after {
+        border-color: rgba(16, 16, 16, 0);
+        border-right-color: #101010;
+        border-width: 30px;
+        margin-top: -30px;
+    }
+    .sentiment-highlighter:before {
+        border-color: rgba(102, 162, 162, 0);
+        border-right-color: #CBE7E7;
+        border-width: 37px;
+        margin-top: -37px;
+    }
 
-$('#research').click(function(){
-	$('#showResearch').show();
-	$('#showAbout').hide();
-	$('#showProjects').hide();
-});
+    .large-quote {
+        font-size: 36px;
+        margin-right: 400px;
+    }
 
-$('#projects').click(function(){	
-	$('#showProjects').show();
-	$('#showAbout').hide();
-	$('#showResearch').hide();
-});
+    .logo {
+        max-width: 200px;
+    }
 
-$('#email').click(function(){
-	var obsfucate = 'l';
-	copyToClipboard('a' + obsfucate + 'exschi' + obsfucate + obsfucate + 'er@gmai' + obsfucate + '.com');
-});
+    .logo-holder {
+        margin: auto 10px;
+    }
 
-function copyToClipboard(text) {
-  window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
+    /* Mostly copy pasta from below with some mods */
+    /* Add a tooltip like this <div tooltip="tooltip content here">I'm a div</div>  */
+    /* Change the pop-up side by adding modding <div tooltip="tooltip content here" tooltip-position="left">I'm a div</div>  */
+    /* pop-up sides are left, right, top, bottom, defaults to top */
+    /* https://medium.freecodecamp.org/a-step-by-step-guide-to-making-pure-css-tooltips-3d5a3e237346 */
+    [tooltip]{
+        position:relative;
+    }
+    [tooltip]::before {
+        content: "";
+        position: absolute;
+        top:-6px;
+        left:50%;
+        transform: translateX(-50%);
+        border-width: 4px 6px 0 6px;
+        border-style: solid;
+        border-color: rgba(0,0,0,0.7) transparent transparent transparent;
+        z-index: 99;
+        opacity:0;
+    }
+    
+    [tooltip-position='left']::before{
+        left:0%;
+        top:50%;
+        margin-left:-12px;
+        transform:translatey(-50%) rotate(-90deg) 
+    }
+
+    [tooltip-position='top']::before{
+        left:50%;
+    }
+
+    [tooltip-position='buttom']::before{
+        top:100%;
+        margin-top:8px;
+        transform: translateX(-50%) translatey(-100%) rotate(-180deg)
+    }
+
+    [tooltip-position='right']::before{
+        left:100%;
+        top:50%;
+        margin-left:1px;
+        transform:translatey(-50%) rotate(90deg)
+    }
+    
+    [tooltip]::after {
+        content: attr(tooltip);
+        position: absolute;
+        left:50%;
+        top:-6px;
+        transform: translateX(-50%)   translateY(-100%);
+        background: rgba(0,0,0,0.7);
+        text-align: center;
+        color: #fff;
+        padding:4px 2px;
+        font-size: 12px;
+        min-width: 80px;
+        border-radius: 5px;
+        pointer-events: none;
+        padding: 4px 4px;
+        z-index:99;
+        opacity:0;
+    }
+    
+    [tooltip-position='left']::after{
+        left:0%;
+        top:50%;
+        margin-left:-8px;
+        transform: translateX(-100%) translateY(-50%);
+    }
+
+    [tooltip-position='top']::after{
+        left:50%;
+    }
+
+    [tooltip-position='buttom']::after{
+        top:100%;
+        margin-top:8px;
+        transform: translateX(-50%) translateY(0%);
+    }
+
+    [tooltip-position='right']::after{
+        left:100%;
+        top:50%;
+        margin-left:8px;
+        transform: translateX(0%) translateY(-50%);
+    }
+    
+    [tooltip]:hover::after,[tooltip]:hover::before {
+        opacity: 1;
+        transition-delay: 1.0s;
+    }
+
+/* Arrow CSS*/
+.bar-label {
+    position: relative;
+    background: #F0FAFA;
+    border: 2px solid #46454b;
+    height: 40px;
+    margin: 20px 20px;
+    padding: 0 15px;
+    background-color: #F0FAFA;
+    font-family: 'Roboto Mono', monospace;
+    line-height: 40px;
 }
 
+.bar-label:after, .bar-label:before {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
 
-</script>
+.bar-label:after {
+    border-color: rgba(136, 183, 213, 0);
+    border-right-color: #F0FAFA;
+    border-width: 10px;
+    margin-top: -10px;
+}
+.bar-label:before {
+    border-color: rgba(194, 225, 245, 0);
+    border-right-color: #46454B;
+    border-width: 13px;
+    margin-top: -13px;
+}
+/* bar */
+
+.bar {
+    height: 40px;
+    margin: 20px 0;
+    background-color: #CEE4E4;
+    position: relative;
+    border: 2px solid #46454B;
+}
+
+.bar-text {
+    margin-left: 15px;
+    color: #46454B;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+    line-height: 40px;
+}
+
+.bar-icon {
+    margin: 12px 20px;
+}
+
+.bar:after, .bar:before {
+    right: -2px;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+
+}
+
+.bar:after {
+    border-color: rgba(136, 183, 213, 0);
+    border-right-color: #FFF;
+    border-width: 10px;
+    margin-top: -10px;
+    z-index: 999;
+}
+.bar:before {
+    border-color: rgba(194, 225, 245, 0);
+    border-right-color: #46454B;
+    border-width: 13px;
+    margin-top: -13px;
+}
+
+.job-title:before {
+    position:absolute;
+    left:0;
+    bottom:0;
+    content: " ";
+    width: 100%;
+    height: 5px;
+    background-color:#CBE7E7;
+    /* background: linear-gradient(90deg, #CBE7E7, #fff); */
+}
+.job-title {
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+}
+
+.bio {
+    margin: 20px 40px;
+    padding: 10px;
+    background-color:#F0FAFA;
+    border: 1px solid #46454B;
+}
+.bio-project {
+    margin: 20px 40px;
+    padding: 10px;
+    background-color:#FFF;
+    border: 1px solid #46454B;
+}
+
+.bio-title {
+    /* text-align: center; */
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
+}
+
+</style>
+
+<body>
+<div class="paper">
+    <div class="flex-bar">
+        <!-- A11y notes: using proper heading helps screen readers -->
+        <h1>Alexander J. Schiller, PhD</h1>
+        <!-- A11y notes: SVG made accessible more accessible by adding a title, description, and approriate IDs (along with aria-labelledby) -->
+        <img src="assets/logo_three_mountains.svg">
+    </div>
+    <!-- Link Bar -->
+    <div class="foot-container">
+        <!-- A11y notes: decorative line is hidden from aria because it doesn't add anything of value -->
+        <div class="line" aria-hidden="true"></div>
+        <!-- A11y notes: Added tab index, and i link title's to help make it clear the role of each piece -->
+        <div class="flex">
+            <div class="flex-item" tooltip="My GitHub">
+                <a class="icon-link" tabindex="1" href="https://www.github.com/alexschiller/" target="_blank">
+                    <i class="fa fa-icon fab fa-github" title="GitHub logo, link to my profile"></i>
+                </a>
+            </div>
+            <div class="flex-item" tooltip="My Twitter">
+                <a class="icon-link" tabindex="2" href="https://twitter.com/alexjschiller/" target="_blank">
+                    <i class="fa fa-icon fab fa-twitter" title="Twitter logo, link to my profile"></i>
+                </a>
+            </div>
+            <div class="flex-item" tooltip="My Email">
+                <a class="icon-link" tabindex="3" href="mailto:alexschiller@gmail.com"  target="_blank">
+                    <i class="fa fa-icon fab fa-send" title="Paper airpline mail logo, mailto link to me"></i>
+                </a>
+            </div>
+            <div class="flex-item" tooltip="My Homepage">
+                <a class="icon-link" tabindex="4" href="http://www.alexjschiller.com" target="_blank">
+                    <i class="fa fa-icon fab fa-home" title="Home Logo, link to my homepage"></i>
+                </a>
+            </div>
+        </div>
+        <div class="line" aria-hidden="true"></div>
+    </div>
+
+    <h2>At a glance</h2>
+
+    <!-- Python and JavaScript-->
+    <div class="flex-graph">
+        <div class="bar flex-bar" style="width: 300px;">
+            <div class="bar-text">Software (Python, JS)</div>
+        </div>
+        <div class="bar-label"> 5 years </div>
+    </div>
+
+    <div class="body-text">2941 contributions on <a href="https://www.github.com/alexschiller/">GitHub</a> from 2012 to 2018</div>
+
+    <div class="github-graph">
+        <div class="github-flex-graph">
+            <div class="github-text">2018</div>
+            <div class="square github-1"></div><div class="square github-1"></div><div class="square github-1"></div>
+            <div class="square github-1"></div><div class="square github-1"></div><div class="square github-1"></div>
+            <div class="square github-1"></div><div class="square github-1"></div><div class="square github-1"></div>
+            <div class="square github-2"></div><div class="square github-2"></div><div class="square github-2"></div>
+            <div class="square github-2"></div><div class="square github-2"></div><div class="square github-2"></div>
+            <div class="square github-2"></div><div class="square github-2"></div><div class="square github-2"></div>
+            <div class="square github-3"></div><div class="square github-3"></div><div class="square github-3"></div>
+            <div class="square github-3"></div><div class="square github-3"></div><div class="square github-3"></div>
+            <div class="square github-3"></div><div class="square github-3"></div><div class="square github-3"></div>
+            <div class="square github-4"></div><div class="square github-4"></div><div class="square github-4"></div>
+            <div class="square github-4"></div><div class="square github-4"></div><div class="square github-4"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="github-text">750 (YTD)</div>
+        </div>
+        <div class="github-flex-graph">
+            <div class="github-text">2017</div>
+            <div class="square github-1"></div><div class="square github-1"></div><div class="square github-1"></div>
+            <div class="square github-1"></div><div class="square github-1"></div><div class="square github-1"></div>
+            <div class="square github-1"></div><div class="square github-1"></div><div class="square github-1"></div>
+            <div class="square github-2"></div><div class="square github-2"></div><div class="square github-2"></div>
+            <div class="square github-2"></div><div class="square github-2"></div><div class="square github-2"></div>
+            <div class="square github-2"></div><div class="square github-2"></div><div class="square github-2"></div>
+            <div class="square github-3"></div><div class="square github-3"></div><div class="square github-3"></div>
+            <div class="square github-3"></div><div class="square github-3"></div><div class="square github-3"></div>
+            <div class="square github-3"></div><div class="square github-3"></div><div class="square github-3"></div>
+            <div class="square github-4"></div><div class="square github-4"></div><div class="square github-4"></div>
+            <div class="square github-4"></div><div class="square github-4"></div><div class="square github-4"></div>
+            <div class="square github-4"></div><div class="square github-4"></div><div class="square github-4"></div>
+            <div class="github-text">780</div>
+        </div>
+        <div class="github-flex-graph">
+            <div class="github-text">2016</div>
+            <div class="square github-1"></div><div class="square github-1"></div><div class="square github-1"></div>
+            <div class="square github-1"></div><div class="square github-1"></div><div class="square github-1"></div>
+            <div class="square github-1"></div><div class="square github-1"></div><div class="square github-1"></div>
+            <div class="square github-2"></div><div class="square github-2"></div><div class="square github-2"></div>
+            <div class="square github-2"></div><div class="square github-2"></div><div class="square github-2"></div>
+            <div class="square github-2"></div><div class="square github-2"></div><div class="square github-2"></div>
+            <div class="square github-3"></div><div class="square github-3"></div><div class="square github-3"></div>
+            <div class="square github-3"></div><div class="square github-3"></div><div class="square github-3"></div>
+            <div class="square github-3"></div><div class="square github-3"></div><div class="square github-3"></div>
+            <div class="square github-4"></div><div class="square github-4"></div><div class="square github-4"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="github-text">681</div>
+        </div>
+        <div class="github-flex-graph">
+            <div class="github-text">2015</div>
+            <div class="square github-1"></div><div class="square github-1"></div><div class="square github-1"></div>
+            <div class="square github-1"></div><div class="square github-1"></div><div class="square github-1"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="github-text">099</div>
+        </div>
+        <div class="github-flex-graph">
+            <div class="github-text">2014</div>
+            <div class="square github-1"></div><div class="square github-1"></div><div class="square github-1"></div>
+            <div class="square github-1"></div><div class="square github-1"></div><div class="square github-1"></div>
+            <div class="square github-1"></div><div class="square github-1"></div><div class="square github-1"></div>
+            <div class="square github-2"></div><div class="square github-2"></div><div class="square github-2"></div>
+            <div class="square github-2"></div><div class="square github-2"></div><div class="square github-2"></div>
+            <div class="square github-2"></div><div class="square github-2"></div><div class="square github-2"></div>
+            <div class="square github-3"></div><div class="square github-3"></div><div class="square github-3"></div>
+            <div class="square github-3"></div><div class="square github-3"></div><div class="square github-3"></div>
+            <div class="square github-3"></div><div class="square github-3"></div><div class="square github-3"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="github-text">613</div>
+        </div>
+        <div class="github-flex-graph">
+            <div class="github-text">2013</div>
+            <div class="square github-1"></div><div class="square github-1"></div><div class="square github-1"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="github-text">018</div>
+        </div>
+        <div class="github-flex-graph">
+            <div class="github-text">2012</div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="square github-0"></div><div class="square github-0"></div><div class="square github-0"></div>
+            <div class="github-text">000 (Joined)</div>
+        </div>
+    </div>
+
+    <!-- Rlang -->
+    <div class="flex-graph">
+        <div class="bar flex-bar" style="width: 420px;">
+            <div class="bar-text">Data Analysis (R)</div>
+        </div>
+        <div class="bar-label"> 7 years </div>
+    </div>
+
+    <div class="body-text">30 lab and online experiments designed, conducted, and analyzed</div>
+    <div class="github-flex-graph">
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+    </div>
+
+    <div class="body-text"> 50 students taught R, Stats, and Research Methods</div>
+    <div class="github-flex-graph">
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+    </div>
+
+    <!-- Research -->
+    <div class="flex-graph">
+        <div class="bar flex-bar" style="width: 540px;">
+            <div class="bar-text">Research (Cognitive Psychology)</div>
+        </div>
+        <div class="bar-label"> 9 years </div>
+    </div>
+
+    <div class="body-text">3 published articles and book chapters</div>
+    <div class="github-flex-graph">
+        <div class="square back-color"></div>
+        <div class="square back-color"></div>
+        <div class="square back-color"></div>
+    </div>
+
+    <div class="body-text">6 talks presented</div>
+    <div class="github-flex-graph">
+        <div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div>
+    </div>
+
+    <div class="body-text">14 posters presented at conferences</div>
+    <div class="github-flex-graph">
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div>
+    </div>
+
+    <!-- Mentoring -->
+    <div class="flex-graph">
+        <div class="bar flex-bar" style="width: 600px;">
+            <div class="bar-text">Managing and Mentoring (Students, Software Developers)</div>
+        </div>
+        <div class="bar-label"> 10 years </div>
+    </div>
+
+    <div class="body-text"> 4 software developers managed/mentored as a <a href="#techlead">Tech Lead</a> and <a href="#softwaredeveloper">Software Developer</a></div>
+    <div class="github-flex-graph">
+        <div class="square back-color"></div>
+        <div class="square back-color"></div>
+        <div class="square back-color"></div>
+        <div class="square back-color"></div>
+    </div>
+
+    <div class="body-text"> 30 research assistants managed/mentored as a <a href="#graduatestudent">Graduate Student</a> and <a href="#labmanager">Lab Manager</a></div>
+    <div class="github-flex-graph">
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+    </div>
+
+    <div class="body-text">60 students mentored as a <a href="#residentadvisor">Resident Advisor</a></div>
+    <div class="github-flex-graph">
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+        <div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div><div class="square back-color"></div>
+    </div>
+</div>
+
+<div class="paper">
+    <h2>Technical Experience</h2>
+    <div class="flex-bar bio">
+            <img src="assets/logo_cos.svg">
+            <div class="bio-box">
+                <div class="bio-title">Center for Open Science</div>
+                <div class="text"> 
+                    The Center for Open Science is a non-profit startup with the goal of increasing openness, integrity, and reproducibility of research.
+                    I started at the Center as an intern in 2013 while working on my PhD. I signed on as a developer
+                    in 2016 and am now a tech lead in charge of three services: Preprints, Registries, and Peer Review.
+                </div>
+            </div>
+        </div>
+    
+    <div class="flex-bar">
+        <div class="body-title job-title" id="techlead">Tech Lead (Center for Open Science)</div>
+        <div class="body-title job-title">Jan 2018 to Present</div>
+    </div>
+
+    <div class="text"> - Coordinate, review, and release all code from 165 pull requests across 4 git repos (to date)</div>
+    <div class="text"> - Mentor and manage the agile open source work of 3 software developers</div>
+    <div class="text"> - Create new front-end features using EmberJS and ECMAScript 6</div>
+    <div class="text"> - Evaluate design docs, weigh in on UX design, and assist in sprint planning</div>
+
+    <div class="flex-bar bio">
+        <img src="assets/logo_preprint.svg">
+        <div class="bio-box">
+            <div class="bio-title">Product Highlight: OSFPreprints</div>
+            <div class="text"> 
+                The Center for Open Science current hosts 22 preprint providers. Providers are primarily topic (e.g., Psychology, PsyArXiv, 2277 preprints) or region
+                (e.g., Indonesia, INA-Rxiv, 3214 preprints) focused. My current work focuses on building out features to improve impact, sharing, and useability while
+                also doing application maintenance. One recent major maintenance task involved upgrading to Ember 2.18 (from 2.11) and adding stricter linting.
+                These upgrades touched 1/4 of the preprint repo's code and contained over 6000 lines of modified code.
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex-bar">
+        <div class="body-title job-title" id="softwaredeveloper">Software Developer (Center for Open Science)</div>
+        <div class="body-title job-title">Sept 2016 to Jan 2018</div>
+    </div>
+
+    <div class="text"> - Fixed emergent high priority user-reported issues</div>
+    <div class="text"> - Created new user interfaces and brought polish to large, ailing features that other engineers avoided</div>
+    <div class="text"> - Managed the work of two interns improving quality and speed of 2400 API tests</div>
+    <div class="text"> - In raw numbers: I wrote 139 feature/bug fixes, 54 hotfixes</div>
+    <div class="text"> - Additionally, I reviewed 130 pull requests, and created 155 Jira tickets for issues (second only to QA)</div>
+
+    <div class="flex-bar bio">
+        <img src="assets/logo_sitemap.svg">
+        <div class="bio-box">
+            <div class="bio-title">Project Highlight: Open Science Framework Sitemap</div>
+            <div class="text">
+                One fun project I enjoyed was writing a <a href="https://github.com/CenterForOpenScience/osf.io/blob/develop/scripts/generate_sitemap.py">custom sitemap generator for the Open Science Framework</a>.
+                We required some custom site routing that made out of the box solutions less than optimal. In production, the script runs nightly on a celery beat
+                job and ships the data to an Amazon S3 bucket (using boto3). The sitemap was needed to allow Google Scholar to index our preprints.
+                One interesting side effect was that the sitemap script also served as a coal mine canary and alerted us on more than one occasion to issues in the production database.
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex-bar">
+        <div class="body-title job-title">Software Developer Intern (Center for Open Science)</div>
+        <div class="body-title job-title">Oct 2013 to May 2016</div>
+    </div>
+    <div class="text"> - Wrote the first version of the Modular File Renderer, a library to convert various file types to HTML</div>
+    <div class="text"> - Designed and implemented an onboarder interface that allowed users to quickly start new projects on the OSF</div>
+    <div class="text"> - Assisted in the design and prototyping of a new single page horizontal scrolling user interface</div>
+    <div class="text"> - Created a work-in-progress R package to interface with the OSF API and pull project data directly into R</div>
+    <div class="text"> - Onboarded new interns and helped them set up local development environments</div>
+    <div class="text"> - Fixed bugs and added new user facing features</div>
+
+    <div class="flex-bar bio">
+        <img src="assets/logo_modular_file_renderer.svg">
+        <div class="bio-box">
+            <div class="bio-title">Project Highlight: Modular File Renderer</div>
+            <div class="text">
+                My first project at the Center for Open Science was the <a href="https://github.com/CenterForOpenScience/modular-file-renderer">Modular File Renderer</a>.
+                Scientists upload various file types to their projects. Some file types are trivial to render to HTML, but many require integrating with libraries or
+                writing custom rendering scripts. The goal of the Modular File Renderer was to write as many renderers as possible (I wrote the first 20).
+                The structure of the code has changed in the last few years, but I can see still bits and pieces of the original code I wrote.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="paper">
+    <h2>Projects</h2>
+    <div class="flex-bar"><div class="body-title job-title">DIMDAT (Version 2)</div></div>
+    <div class="flex-bar bio-project">
+        <div class="logo-holder"><img style="width:200px;" class="logo" src="assets/dimdat.svg"/></div>
+        <div class="bio-box">
+            <div class="bio-title">DIMDAT (data platform, tools, and tutorials)</div>
+            <div class="text">
+                <a href="https://dimdat.com">DIMDAT</a> version 2 is a work in progress blog and platform for my and my brother's (Addison Schiller) various projects. The ambition is to host datasets, web tools, and tutorials
+                in an open and accessible way.
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-bar"><div class="body-title job-title">DIMDAT (Version 1)</div></div>
+    <div class="flex-bar bio-project">
+        <div class="logo-holder"><img class="logo" src="assets/dimdatdog.png"/></div>
+        <div class="bio-box">
+            <div class="bio-title">DIMDAT (data visualization blog)</div>
+            <div class="text">
+                I created 8 blog posts/data visualizations that I shared on Reddit's /r/dataisbeautiful. I received over 50,000 web hits and had over 4,000 karma on Reddit. 
+                A subset of these visualtions are available on my old <a href="http://alexjschiller.com">personal website</a> and the rest are locally archived. The image on the left
+                is the logo I created: dimdatdog.
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex-bar"><div class="body-title job-title">File Format Commons</div></div>
+    <div class="flex-bar bio-project">
+        <div class="logo-holder"><img class="logo" src="assets/ffc_logo.png"/></div>
+        <div class="bio-box">
+            <div class="bio-title">File Format Commons (file format sample site)</div>
+            <div class="text">
+                I started creating sample files while working on the Modular File Renderer. I found it difficult to find good and simple sample files, 
+                so I made my own, slapped on a CC0 license, and put them in a <a href="http://github.com/alexschiller/file-format-commons/">GitHub repository</a>. In total there are 67 files and I still have dreams of adding onto the project. I 
+                created a <a href="http://fileformatcommons.com">small wordpress site</a> to also host the data in addition to some other file format structure data I collected. 
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-bar"><div class="body-title job-title">DataID</div></div>
+    <div class="flex-bar bio-project">
+        <div class="logo-holder"><img class="logo" src="assets/dataid.svg"/></div>
+        <div class="bio-box">
+            <div class="bio-title">DataID (WIP python data identification library)</div>
+            <div class="text">
+                DataID is a work in progress to create a Python library to help identify various data types. Primarily using Regex and data matching, the library can identify roughly 10
+                different types of data from zip codes and states to phone and credit card numbers. Contains roughly 1500 lines of Python code.
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-bar"><div class="body-title job-title">Sentiment Highlighter</div></div>
+    <div class="flex-bar bio-project" style="flex-direction: column;">
+        <div class="bio-box">
+            <div class="bio-title">Sentiment Highlighter (color coded sentiment highlighting script)</div>
+            <div class="text">
+                I created a script that took in text and returned HTML highlighting positive/negative sentiment.
+            </div>
+        </div>
+        
+        <div class="logo-holder flex-bar">
+            <img style="width:200px;" src="assets/logo_masks.svg">
+            <div class="sentiment-highlighter text">
+                <font color="#F5EEFD">What </font><font color="#FFECEC">fire </font><font color="#F5EEFD">is </font><font color="#F5EEFD">in </font><font color="#F5EEFD">mine </font><font color="#F5EEFD">ears? </font><font color="#E1CAF9">Can </font><font color="#F5EEFD">this </font><font color="#E1CAF9">be </font><font color="#BD88F2">true? </font><font color="#F5EEFD"><br>Stand </font><font color="#F5EEFD">I </font><font color="#FFBBBB">condemn </font><font color="#F5EEFD">'d </font><font color="#F5EEFD">for </font><font color="#C79BF2">pride </font><font color="#F5EEFD">and </font><font color="#FFBBBB">scorn </font><font color="#F5EEFD">so </font><font color="#F5EEFD">much? </font><font color="#F5EEFD"><br>Contempt </font><font color="#FFBBBB">farewell </font><font color="#F5EEFD">and </font><font color="#E1CAF9">maiden </font><font color="#C79BF2">pride </font><font color="#F5EEFD">adieu! </font><font color="#F5EEFD"><br>No </font><font color="#E1CAF9">glory </font><font color="#E1CAF9">lives </font><font color="#F5EEFD">behind </font><font color="#F5EEFD">the </font><font color="#F5EEFD">back </font><font color="#F5EEFD">of </font><font color="#F5EEFD">such. </font><font color="#F5EEFD"><br>And </font><font color="#F5EEFD">Benedick </font><font color="#BD88F2">love </font><font color="#F5EEFD">on </font><font color="#F5EEFD">I </font><font color="#F5EEFD">will </font><font color="#F5EEFD">requite </font><font color="#F5EEFD">thee, </font><font color="#F5EEFD"><br>Taming </font><font color="#F5EEFD">my </font><font color="#E1CAF9">wild </font><font color="#C79BF2">heart </font><font color="#F5EEFD">to </font><font color="#F5EEFD">thy </font><font color="#F5EEFD">loving </font><font color="#F5EEFD">hand.<br>If </font><font color="#F5EEFD">thou </font><font color="#F5EEFD">dost </font><font color="#BD88F2">love </font><font color="#F5EEFD">my </font><font color="#BD88F2">kindness </font><font color="#E1CAF9">shall </font><font color="#F5EEFD">incite </font><font color="#F5EEFD">thee </font><font color="#F5EEFD"><br>To </font><font color="#F5EEFD">bind </font><font color="#F5EEFD">our </font><font color="#E1CAF9">loves </font><font color="#F5EEFD">up </font><font color="#F5EEFD">in </font><font color="#F5EEFD">a </font><font color="#E1CAF9">holy </font><font color="#E1CAF9">band. </font><font color="#F5EEFD"><br>For </font><font color="#F5EEFD">others </font><font color="#E1CAF9">say </font><font color="#F5EEFD">thou </font><font color="#F5EEFD">dost </font><font color="#C79BF2">deserve </font><font color="#F5EEFD">and </font><font color="#F5EEFD">I </font><font color="#F5EEFD"><br>Believe </font><font color="#F5EEFD">it </font><font color="#E1CAF9">better </font><font color="#F5EEFD">than </font><font color="#F5EEFD">reportingly. </font><font color="#F5EEFD"></font>
+                <div>Much Ado About Nothing, Act 3, Scene 1</div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-bar"><div class="body-title job-title">Other Misc Projects</div></div>
+    TODO
+</div>
+
+
+<div class="paper">
+    <h2>Research Experience</h2>
+    <div class="body-title" id="graduatestudent">Graduate Student - Cognitive Psychology (University of Virginia)</div>
+    <div class="body-title" id="labmanager">Lab Manager - Social Cognition and Behavior Lab (University of Virginia)</div>
+    <div class="body-title" id="undergraduatestudent">Undergraduate Student - Psychology (Western Washington University)</div>
+</div>
+
+<div class="paper">
+    <h2>Other Experience</h2>
+    <div class="body-title" id="residentadvisor">Resident Advisor (Western Washington University)</div>
+    <div class="body-title">Advocacy Counselor (Domestic Violence and Sexual Assault Services)</div>
+    <div class="body-title">Finish Carpenter (MGH Construction)</div>
+    <div class="body-title">Inside Customer Service (Westside Building Supply)</div>
+    <div class="body-title">Outside Customer Service (Westside Building Supply)</div>
+    <div class="body-title">Raspberry Picker (Jake Maberry Packing)</div>
+</div>
+
+</body>
