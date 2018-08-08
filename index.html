@@ -462,7 +462,9 @@
 </body>
 
 <script>
-if('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/assets/sw.js');
-}
+// Let's register our serviceworker
+// navigator.serviceWorker.register('assets/sw.js', {
+//     // The scope cannot be parent to the script url
+//     scope: './'
+// });
 </script>
