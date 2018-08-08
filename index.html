@@ -1,424 +1,17 @@
-    <!-- 
-    Whoa you're looking at my source code. Here's some notes:
+<!--Whoa you're looking at my source code. Here's some notes:
     1. This was written in a single HTML file because why not?
     I want to show off what I can do by hand, not what a library provides.
     2. Only external deps are font-awesome and google fonts.
     3. No page tracking.
     4. Heck, no JavaScript at that. That may change eventually if a good usecase arises.
 
-    Want to chat, hit me up: alexschiller@gmail.com
--->
+    Want to chat, hit me up: alexschiller@gmail.com-->
 
 <head>
     <link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/site.css">
 </head>
-
-<style>
-    /* Loosely organized as: */
-
-    /* Position */
-    /* Display and Box Model */
-    /* Color */
-    /* Text */
-    /* Other */
-
-    /* Like rules grouped together */
-
-    body {
-        color: #46454B;
-        background: linear-gradient(45deg, #aaa, #fff);
-        font-family: 'Lato', sans-serif;
-    }
-
-    .paper {
-        width: 798;
-        margin: 50px auto;
-        padding: 96px;
-        border: 1px solid #101010;
-        box-shadow: 5px 10px 18px #888888;
-        background-color: #fff;
-    }
-
-    h2 {
-        text-align: center;
-    }
-
-
-    a:link, a:visited {
-        color: #355F5F;
-    }
-
-    a:hover {
-        color: #162727;
-    }
-
-    .body-text {
-        font-size: 16px;
-        line-height: 40px;
-    }
-
-    .text {
-        margin-left: 20px;
-        font-size: 16px;
-        line-height: 32px;
-    }
-
-    .body-title {
-        font-size: 20px;
-    }
-
-    .icon-link:link, .icon-link:visited {
-        color: #46454b;
-    }
-
-    .icon-link:hover {
-        color: #66A2A2;
-    }
-
-    .icon-link {
-        text-decoration: none;
-        margin: 30px;
-        font-size: 30px;
-    }
-
-    .flex-graph {
-        display: flex;
-        align-items: left;
-        justify-content: left;
-    }
-
-    .flex-bar {
-        display: flex;
-        align-items: left;
-        justify-content: space-between;
-    }
-
-    .flex {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .flex-item {
-        max-width: 50%;
-    }
-
-    .line {
-        margin: 10px 0;
-        height: 1px;
-        background: #46454b;
-    }
-
-    .square {
-        width: 10px;
-        height: 10px;
-        margin: 1px;
-    }
-
-    /* Square Colors */
-    .github-4 {background-color: rgb(25, 97, 39);}
-    .github-3 {background-color: rgb(35, 154, 59);}
-    .github-2 {background-color: rgb(123, 201, 111);}
-    .github-1 {background-color: rgb(198, 228, 139);}
-    .github-0 {background-color: rgb(235, 237, 240);}
-
-    .back-color {background-color: rgb(20, 50, 200);}
-    .back-color {background-color: rgb(20, 200, 50);}
-    .back-color {background-color: rgb(200, 50, 20);}
-
-
-    .back-color {background-color: #3E8585}
-    /* .exp-2 {background-color: #66A2A2} */
-    /* .exp-1 {background-color: #CBE7E7} */
-    /* .exp-0 {background-color: #F0FAFA} */
-    /* .exp-0 {background-color: rgb(235, 237, 240);} */
-    .github-graph {
-        border: 1px #e1e4e8 solid !important;
-        border-radius: 3px;
-        padding: 30px;
-        width: 550px;
-        text-align: center;
-    }
-
-    .github-text {
-        margin: 0 2px 0 2px;
-        font-family: 'Roboto Mono', monospace;
-        font-size: 10px;
-        color: #767676;
-    }
-
-    .github-flex-graph {
-        display: flex;
-        align-items: center;
-        justify-content: left;
-    }
-
-    .sentiment-highlighter {
-        position: relative;
-        background: #101010;
-        border: 5px solid #CBE7E7;
-        color: #CBE7E7;
-        text-align: center;
-        width: 500px;
-        padding: 10px;
-        border-radius: 30px;
-        line-height: 24px;
-        margin: 10px;
-    }
-
-    .sentiment-highlighter:after, .sentiment-highlighter:before {
-        right: 100%;
-        top: 50%;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
-    }
-
-    .sentiment-highlighter:after {
-        border-color: rgba(16, 16, 16, 0);
-        border-right-color: #101010;
-        border-width: 30px;
-        margin-top: -30px;
-    }
-    .sentiment-highlighter:before {
-        border-color: rgba(102, 162, 162, 0);
-        border-right-color: #CBE7E7;
-        border-width: 37px;
-        margin-top: -37px;
-    }
-
-    .large-quote {
-        font-size: 36px;
-        margin-right: 400px;
-    }
-
-    .logo {
-        max-width: 200px;
-    }
-
-    .logo-holder {
-        margin: auto 10px;
-    }
-
-    /* Mostly copy pasta from below with some mods */
-    /* Add a tooltip like this <div tooltip="tooltip content here">I'm a div</div>  */
-    /* Change the pop-up side by adding modding <div tooltip="tooltip content here" tooltip-position="left">I'm a div</div>  */
-    /* pop-up sides are left, right, top, bottom, defaults to top */
-    /* https://medium.freecodecamp.org/a-step-by-step-guide-to-making-pure-css-tooltips-3d5a3e237346 */
-    [tooltip]{
-        position:relative;
-    }
-    [tooltip]::before {
-        content: "";
-        position: absolute;
-        top:-6px;
-        left:50%;
-        transform: translateX(-50%);
-        border-width: 4px 6px 0 6px;
-        border-style: solid;
-        border-color: rgba(0,0,0,0.7) transparent transparent transparent;
-        z-index: 99;
-        opacity:0;
-    }
-    
-    [tooltip-position='left']::before{
-        left:0%;
-        top:50%;
-        margin-left:-12px;
-        transform:translatey(-50%) rotate(-90deg) 
-    }
-
-    [tooltip-position='top']::before{
-        left:50%;
-    }
-
-    [tooltip-position='buttom']::before{
-        top:100%;
-        margin-top:8px;
-        transform: translateX(-50%) translatey(-100%) rotate(-180deg)
-    }
-
-    [tooltip-position='right']::before{
-        left:100%;
-        top:50%;
-        margin-left:1px;
-        transform:translatey(-50%) rotate(90deg)
-    }
-    
-    [tooltip]::after {
-        content: attr(tooltip);
-        position: absolute;
-        left:50%;
-        top:-6px;
-        transform: translateX(-50%)   translateY(-100%);
-        background: rgba(0,0,0,0.7);
-        text-align: center;
-        color: #fff;
-        padding:4px 2px;
-        font-size: 12px;
-        min-width: 80px;
-        border-radius: 5px;
-        pointer-events: none;
-        padding: 4px 4px;
-        z-index:99;
-        opacity:0;
-    }
-    
-    [tooltip-position='left']::after{
-        left:0%;
-        top:50%;
-        margin-left:-8px;
-        transform: translateX(-100%) translateY(-50%);
-    }
-
-    [tooltip-position='top']::after{
-        left:50%;
-    }
-
-    [tooltip-position='buttom']::after{
-        top:100%;
-        margin-top:8px;
-        transform: translateX(-50%) translateY(0%);
-    }
-
-    [tooltip-position='right']::after{
-        left:100%;
-        top:50%;
-        margin-left:8px;
-        transform: translateX(0%) translateY(-50%);
-    }
-    
-    [tooltip]:hover::after,[tooltip]:hover::before {
-        opacity: 1;
-        transition-delay: 1.0s;
-    }
-
-/* Arrow CSS*/
-.bar-label {
-    position: relative;
-    background: #F0FAFA;
-    border: 2px solid #46454b;
-    height: 40px;
-    margin: 20px 20px;
-    padding: 0 15px;
-    background-color: #F0FAFA;
-    font-family: 'Roboto Mono', monospace;
-    line-height: 40px;
-}
-
-.bar-label:after, .bar-label:before {
-    right: 100%;
-    top: 50%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-}
-
-.bar-label:after {
-    border-color: rgba(136, 183, 213, 0);
-    border-right-color: #F0FAFA;
-    border-width: 10px;
-    margin-top: -10px;
-}
-.bar-label:before {
-    border-color: rgba(194, 225, 245, 0);
-    border-right-color: #46454B;
-    border-width: 13px;
-    margin-top: -13px;
-}
-/* bar */
-
-.bar {
-    height: 40px;
-    margin: 20px 0;
-    background-color: #CEE4E4;
-    position: relative;
-    border: 2px solid #46454B;
-}
-
-.bar-text {
-    margin-left: 15px;
-    color: #46454B;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 16px;
-    line-height: 40px;
-}
-
-.bar-icon {
-    margin: 12px 20px;
-}
-
-.bar:after, .bar:before {
-    right: -2px;
-    top: 50%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-
-}
-
-.bar:after {
-    border-color: rgba(136, 183, 213, 0);
-    border-right-color: #FFF;
-    border-width: 10px;
-    margin-top: -10px;
-    z-index: 999;
-}
-.bar:before {
-    border-color: rgba(194, 225, 245, 0);
-    border-right-color: #46454B;
-    border-width: 13px;
-    margin-top: -13px;
-}
-
-.job-title:before {
-    position:absolute;
-    left:0;
-    bottom:0;
-    content: " ";
-    width: 100%;
-    height: 5px;
-    background-color:#CBE7E7;
-    /* background: linear-gradient(90deg, #CBE7E7, #fff); */
-}
-.job-title {
-    position: relative;
-    height: 40px;
-    line-height: 40px;
-}
-
-.bio {
-    margin: 20px 40px;
-    padding: 10px;
-    background-color:#F0FAFA;
-    border: 1px solid #46454B;
-}
-.bio-project {
-    margin: 20px 40px;
-    padding: 10px;
-    background-color:#FFF;
-    border: 1px solid #46454B;
-}
-
-.bio-title {
-    /* text-align: center; */
-    font-weight: bold;
-    text-align: center;
-    font-size: 20px;
-}
-
-</style>
 
 <body>
 <div class="paper">
@@ -457,7 +50,11 @@
         </div>
         <div class="line" aria-hidden="true"></div>
     </div>
-
+    <h2>About this document</h2>
+    <div class="body-text">
+        This is a living document I created to document projects and stuff that makes me proud. I periodically update the numbers,
+        statistics, and information. I am also still backfilling old content. All images were created by me. Last updated 08-07-18.
+    </div>
     <h2>At a glance</h2>
 
     <!-- Python and JavaScript-->
@@ -841,8 +438,7 @@
             </div>
         </div>
     </div>
-    <div class="flex-bar"><div class="body-title job-title">Other Misc Projects</div></div>
-    TODO
+    <!-- <div class="flex-bar"><div class="body-title job-title">Other Misc Projects</div></div> -->
 </div>
 
 
@@ -864,3 +460,9 @@
 </div>
 
 </body>
+
+<script>
+if('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/assets/sw.js');
+}
+</script>
